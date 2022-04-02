@@ -45,8 +45,8 @@
 				  请求的用户只需拥有其中的一个角色就能成功访问对应的URL
 			isAuthenticated()：已经经过认证（不是匿名用户）
 		-->
-		<security:intercept-url pattern="/pages/**"  access="isAuthenticated()" />
-		<!--form-login：定义表单登录信息-->
+		<!--<security:intercept-url pattern="/pages/**"  access="isAuthenticated()" />
+		&lt;!&ndash;form-login：定义表单登录信息&ndash;&gt;
 		<security:form-login login-page="/login.html"
 		                     username-parameter="username"
 		                     password-parameter="password"
@@ -55,7 +55,7 @@
 		                     always-use-default-target="true"
 		                     authentication-failure-url="/login.html"
 		/>
-		
+		-->
 		<!--
 			csrf：对应CsrfFilter过滤器
 			disabled：是否启用CsrfFilter过滤器，如果使用自定义登录页面需要关闭此项，
@@ -76,14 +76,14 @@
 	<bean id="passwordEncoder"
 	      class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	
-	<!--认证管理器，用于处理认证操作-->
+	<!--&lt;!&ndash;认证管理器，用于处理认证操作&ndash;&gt;
 	<security:authentication-manager>
-        <!--认证提供者，执行具体的认证逻辑-->
+        &lt;!&ndash;认证提供者，执行具体的认证逻辑&ndash;&gt;
 		<security:authentication-provider user-service-ref="springSecurityUserService">
-            <!--指定密码加密策略-->
+            &lt;!&ndash;指定密码加密策略&ndash;&gt;
 			<security:password-encoder ref="passwordEncoder" />
         </security:authentication-provider>
-    </security:authentication-manager>
+    </security:authentication-manager>-->
 	
 	<!--开启注解方式权限控制-->
 	<security:global-method-security pre-post-annotations="enabled" />

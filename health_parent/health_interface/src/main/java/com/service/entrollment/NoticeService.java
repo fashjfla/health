@@ -5,9 +5,7 @@ package com.service.entrollment;
 
 import com.entity.PageResult;
 import com.entity.QueryPageBean;
-import com.pojo.EnrollmentAll;
-
-import java.util.List;
+import com.pojo.EnrollmentPolicy;
 
 /**
  * @author 唐晋
@@ -15,13 +13,13 @@ import java.util.List;
  * @date 2022-03-10 20:36
  **/
 
-public interface NoneAdmittedService {
+public interface NoticeService {
 
 
 
-	void edit(EnrollmentAll enrollmentAll);
+	void edit(EnrollmentPolicy enrollmentPolicy);
 
 	PageResult pageQuery(QueryPageBean queryPageBean);
 
-	EnrollmentAll findById(Integer id);
+	EnrollmentPolicy findById(Integer id);
 }

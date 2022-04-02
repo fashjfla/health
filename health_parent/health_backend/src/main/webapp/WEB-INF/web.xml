@@ -6,11 +6,11 @@
 	
   <display-name>Archetype Created Web Application</display-name>
 	<!--委派过滤器，用于整合其他框架-->
-	<filter>
-  <!--整合spring security时，此过滤器的名称固定springSecurityFilterChain-->
+<!--	<filter>
+  &lt;!&ndash;整合spring security时，此过滤器的名称固定springSecurityFilterChain&ndash;&gt;
 		<filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-   </filter>
+   </filter>-->
 
 	
 	
@@ -32,11 +32,11 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 	
-	<filter-mapping>
+<!--	<filter-mapping>
   <filter-name>springSecurityFilterChain</filter-name>
   <url-pattern>/*</url-pattern>
 </filter-mapping>
-	
+	-->
 	
   <servlet>
     <servlet-name>springmvc</servlet-name>

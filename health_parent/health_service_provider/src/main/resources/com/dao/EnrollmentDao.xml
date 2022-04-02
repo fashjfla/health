@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.EnrollmentDao">
+	
+	<sql id="Base_Column_List">
+     id, uniqueId, name, age, sex, ident, admissionRemark, address, admissionStatus
+  </sql>
+	
+	<!--新增-->
+	<insert id="add" parameterType="com.pojo.EnrollmentAll">
+    
+        insert into enrollment(id, uniqueId,age, name, sex, ident, admissionRemark, address,admissionStatus)
+            values
+      	(#{id},#{uniqueId},#{name},#{sex},#{ident},#{admissionRemark},#{address},#{age},#{admissionStatus})
+    </insert>
+	
+	<!--  分页查询-->
+	<select id="selectByCondition" parameterType="String" resultType="com.pojo.EnrollmentAll">
+    select
+     <include refid="Base_Column_List"/>
+    from enrollment
+    <if test="value !=null and value.length >0">
+      where ident = #{value} or uniqueId =#{value}
+    </if>
+	</select>
+	
+	
+	<!--编辑-->
+	<update id="edit" parameterType="com.pojo.EnrollmentAll">
+  update enrollment
+  <set>
+    <if test="uniqueId != null">
+      uniqueId = #{uniqueId},
+    </if>
+    <if test="name != null">
+      name = #{name},
+    </if>
+    <if test="sex != null">
+      sex = #{sex},
+    </if>
+    <if test="age != null">
+      age = #{age},
+    </if>
+    <if test="ident != null">
+      ident = #{ident},
+    </if>
+    <if test="address != null">
+      address = #{address},
+    </if>
+    <if test="admissionRemark != null">
+      admissionRemark = #{admissionRemark},
+    </if>
+    <if test="phone != null">
+      phone = #{phone},
+    </if>
+	<if test="date != null">
+      date = #{date},
+    </if>
+    <if test="admissionStatus != null">
+      admissionStatus = #{admissionStatus},
+    </if>
+    <if test="remark != null">
+      remark = #{remark},
+    </if>
+    <if test="interviewDate != null">
+      interviewDate = #{interviewDate},
+    </if>
+    <if test="enrollment != null">
+      enrollment = #{enrollment},
+    </if>
+  </set>
+  where id = #{id}
+</update>
+		<resultMap type="com.pojo.EnrollmentAll" id="baseResultMap">
+  <id column="id" property="id"/>
+  <result column="name" property="name"/>
+  <result column="uniqueId" property="uniqueId"/>
+  <result column="sex" property="sex"/>
+  <result column="age" property="age"/>
+  <result column="remark" property="remark"/>
+  <result column="graduationSchool" property="graduationSchool"/>
+<result column="admissionRemark" property="admissionRemark"/>
+<result column="address" property="address"/>
+<result column="ident" property="ident"/>
+<result column="parentName" property="parentName"/>
+<result column="phone" property="phone"/>
+<result column="date" property="date"/>
+<result column="admissionStatus" property="admissionStatus"/>
+
+<result column="interviewDate" property="interviewDate"/>
+<result column="enrollment" property="enrollment"/>
+</resultMap>
+	
+	
+  <select id="findById" parameterType="int" resultType="com.pojo.EnrollmentAll">
+    select
+    <include refid="Base_Column_List"/>
+    from enrollment  where id = #{id}
+  </select>
+
+
+</mapper>

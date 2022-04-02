@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.EnrollmentPlanDao">
+    <resultMap type="com.pojo.EnrollmentAll" id="selectByCondition">
+  <id column="id" property="id"/>
+  <result column="period" property="period"/>
+  <result column="startDate" property="startDate"/>
+<result column="endDate" property="endDate"/>
+<result column="people" property="people"/>
+<result column="enrollment" property="enrollment"/>
+<result column="ageGroup" property="ageGroup"/>
+</resultMap>
+	<sql id="Base_Column_List">
+     id, period, startDate, endDate, people, enrollment, ageGroup, school
+  </sql>
+	
+	<select id="query" parameterType="String" resultType="com.pojo.EnrollmentAll">
+    select
+     <include refid="Base_Column_List"/>
+    from enrollment
+	</select>
+	
+	
+	<!--  分页查询-->
+	<select id="selectByCondition" parameterType="String" resultType="com.pojo.EnrollmentAll">
+    select
+     <include refid="Base_Column_List"/>
+    from enrollment
+    <if test="value !=null and value.length >0">
+      where period = #{value} or school =#{value}
+    </if>
+	</select>
+	
+	
+	
+	<!--新增-->
+	
+	
+	<insert id="add" parameterType="com.pojo.EnrollmentAll">
+    
+        insert into enrollment(period,startDate,endDate,people,enrollment,ageGroup,school)
+        values
+        (#{period},#{startDate},#{endDate},#{people},#{enrollment},#{ageGroup},#{school})
+    </insert>
+   <select id="query" resultType="com.pojo.EnrollmentAll">
+      select
+      <include refid="Base_Column_List"/>
+      from enrollment a
+   </select>
+	
+	<!--删除-->
+	<delete id="delete" parameterType="int">
+    delete
+    from enrollment
+    where id = #{id}
+  </delete>
+	
+	
+	<!--编辑-->
+	<update id="edit" parameterType="com.pojo.EnrollmentAll">
+  update enrollment
+  <set>
+    <if test="period != null and period  !=''">
+      period = #{period},
+    </if>
+    <if test="startDate != null and startDate  !=''">
+      startDate = #{startDate},
+    </if>
+    <if test="endDate != null and endDate  !=''">
+      endDate = #{endDate},
+    </if>
+    <if test="people != null and people  !=''">
+      people = #{people},
+    </if>
+    <if test="enrollment != null and enrollment  !=''">
+      enrollment = #{enrollment},
+    </if>
+    <if test="ageGroup != null and ageGroup  !=''">
+      ageGroup = #{ageGroup},
+    </if>
+      <if test="school != null and school  !=''">
+      school = #{school},
+    </if>
+  </set>
+  where id = #{id}
+</update>
+		
+
+
+  <select id="findById" parameterType="int" resultType="com.pojo.EnrollmentAll">
+    select
+    <include refid="Base_Column_List"/>
+    from enrollment  where id = #{id}
+  </select>
+
+
+</mapper>

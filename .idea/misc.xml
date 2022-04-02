@@ -16,6 +16,11 @@
         <option value="$PROJECT_DIR$/../quartzdemo/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/health_parent/health_mobile/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />

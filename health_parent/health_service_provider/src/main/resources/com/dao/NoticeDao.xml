@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.NoticeDao">
+	
+	<sql id="Base_Column_List">
+     id, pre_remark,none_remark,remark,no_remark,flag
+  </sql>
+	
+	
+	<!--  分页查询-->
+	<select id="selectByCondition" parameterType="String" resultType="com.pojo.EnrollmentPolicy">
+    select
+     <include refid="Base_Column_List"/>
+    from enroll_policy
+    <if test="value !=null and value.length >0">
+      where id = #{value}
+    </if>
+	</select>
+	
+	
+	<!--编辑-->
+	<update id="edit" parameterType="com.pojo.EnrollmentPolicy">
+  update enroll_policy
+  <set>
+    <if test="preRemark != null">
+      pre_remark = #{preRemark},
+    </if>
+    <if test="noneRemark != null">
+      none_remark = #{noneRemark},
+    </if>
+    <if test="remark != null">
+      remark = #{remark},
+    </if>
+    <if test="noRemark != null">
+      no_remark = #{noRemark},
+    </if>
+    <if test="flag != null">
+      flag = #{flag},
+    </if>
+  </set>
+  where id = #{id}
+</update>
+		<resultMap type="com.pojo.EnrollmentPolicy" id="selectByCondition">
+  <id column="id" property="id"/>
+  <result column="pre_remark" property="preRemark"/>
+  <result column="none_remark" property="noneRemark"/>
+  <result column="remark" property="remark"/>
+  <result column="no_remark" property="noRemark"/>
+  <result column="flag" property="flag"/>
+</resultMap>
+	
+	
+  <select id="findById" parameterType="int" resultType="com.pojo.EnrollmentPolicy">
+    select
+    <include refid="Base_Column_List"/>
+    from enroll_policy  where id = #{id}
+  </select>
+
+
+</mapper>

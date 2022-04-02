@@ -22,16 +22,24 @@ public class EnrollmentAll implements Serializable {
 	private String ident;//证件号
 	private String parentName;//父/母姓名
 	private String phone;//联系电话
-	private Date date;//报名日期
+	private String date;//报名日期
 	private String admissionStatus;//录取状态（U-待录取，R-未录取，A-预录取，S-已录取）
+	private String admissionRemark;//
 	private String remark;//备注
-	private Date interviewDate;//面试时间
+	private String interviewDate;//面试时间
 	private Integer enrollment;//招生人数
 	private String admissionBatch;//录取批次
 	private String professionCode;//专业代号
 	private String professionName;//专业名称
 	private String schoolYear;//学制年限
 	private float fee;//学费标准
+	private String period;//S-小学 M-初中 H-高中
+	private Integer people;//报名人数
+	private String startDate;
+	private String endDate;
+	private String ageGroup;
+	private String school;//招生学校
+
 
 
 
